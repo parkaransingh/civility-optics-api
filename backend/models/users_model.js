@@ -36,22 +36,14 @@ const userSchema = mongoose.Schema({
     type: String,
     required: false,
   },
-  races: [
-    {
-      race: {
-        type: String,
-        required: false,
-      },
+  race: {
+      type: String,
+      required: false,
     },
-  ],
-  disabilities: [
-    {
-      disability: {
-        type: String,
-        required: false,
-      },
+  disability: {
+      type: String,
+      required: false,
     },
-  ],
   tokens: [
     {
       token: {
