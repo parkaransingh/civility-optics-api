@@ -73,7 +73,9 @@ export const getReviews = asyncHandler(async(req, res) => {
             'review': '$review',
             'value': '$value',
             'tags': '$tags',
-            'date_visited': '$date_visited'
+            'date_visited': '$date_visited',
+            'user_email': '$user_email',
+            'user_name': '$user_name'
           }
         }
       ]
