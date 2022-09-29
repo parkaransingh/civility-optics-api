@@ -91,5 +91,13 @@ userSchema.statics.findByCredentials = async (email, password) => {
   return user;
 };
 
+userSchema.statics.findByEmail = async (email) => {
+  // Search for a user by email and password.
+  const user = await User.findOne({ email });
+  if (!user) {
+    throw new Error({ error: "Invalid login credentials" });
+  }
+  return user;
+};
 const User = mongoose.model("User", userSchema);
 export default User;
