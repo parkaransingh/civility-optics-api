@@ -73,7 +73,9 @@ export const getReviews = asyncHandler(async(req, res) => {
             'review': '$review',
             'value': '$value',
             'tags': '$tags',
-            'date_visited': '$date_visited'
+            'date_visited': '$date_visited',
+            'user_email': '$user_email',
+            'user_name': '$user_name'
           }
         }
       ]
@@ -82,4 +84,21 @@ export const getReviews = asyncHandler(async(req, res) => {
   } catch (error) {
       res.status(400).send(error)
   }
+})
+
+
+export const getUserReviews = asyncHandler(async(req, res) => {
+  // View logged in user profile
+  try {
+      const { email } = req.body
+      const ratings = await Ratings.findByEmail(email)
+      console.log(ratings)
+      if (!rating) {
+          return res.status(401).send({error: 'User lookup failed'})
+      }
+      res.send({ ratings })
+  } catch (error) {
+      res.status(400).send(error)
+  }
+  // res.send(req.user)
 })
