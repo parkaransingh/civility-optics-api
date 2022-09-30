@@ -1,8 +1,8 @@
-import mongoose from 'mongoose'
-import validator from 'validator'
-import bcrypt from 'bcryptjs'
-import jwt from 'jsonwebtoken'
-import sendMail from '../controllers/mail_controller.js'
+import mongoose from "mongoose";
+import validator from "validator";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import sendMail from "../controllers/mail_controller.js";
 
 const Schema = mongoose.Schema;
 
@@ -12,65 +12,92 @@ const userSchema = mongoose.Schema({
     required: true,
     unique: true,
     lowercase: true,
-    validate: value => {
+    validate: (value) => {
       if (!validator.isEmail(value)) {
-        throw new Error({error: 'Invalid Email address'})
+        throw new Error({ error: "Invalid Email address" });
       }
-    }
+    },
   },
   isVerified: {
     type: Boolean,
-    default: false
+    default: false,
   },
   password: {
     type: String,
     required: true,
-    minLength: 7
+    minLength: 7,
   },
-  tokens: [{
-    token: {
+  name: {
+    type: String,
+    required: true,
+    minLength: 2,
+  },
+  gender: {
+    type: String,
+    required: false,
+  },
+  race: {
       type: String,
-      required: true
-    }
-  }]
-})
+      required: false,
+    },
+  disability: {
+      type: String,
+      required: false,
+    },
+  tokens: [
+    {
+      token: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
+});
 
-userSchema.pre('save', async function (next) {
+userSchema.pre("save", async function (next) {
   // Hash the password before saving the user model
-  const user = this
-  if (user.isModified('password')) {
-    user.password = await bcrypt.hash(user.password, 8)
+  const user = this;
+  if (user.isModified("password")) {
+    user.password = await bcrypt.hash(user.password, 8);
   }
-  next()
-})
+  next();
+});
 
-userSchema.methods.generateAuthToken = async function() {
+userSchema.methods.generateAuthToken = async function () {
   // Generate an auth token for the user
-  const user = this
-  const token = jwt.sign({_id: user._id}, process.env.JWT_KEY)
-  user.tokens = user.tokens.concat({token})
-  await user.save()
-  return token
-}
+  const user = this;
+  const token = jwt.sign({ _id: user._id }, process.env.JWT_KEY);
+  user.tokens = user.tokens.concat({ token });
+  await user.save();
+  return token;
+};
 
-userSchema.methods.sendEmailConfirmation = async function() {
+userSchema.methods.sendEmailConfirmation = async function () {
   // Generate an auth token for the user
-  const user = this
-  sendMail("subject", "plaintext", "<p>html</p>", user.email)
-}
+  const user = this;
+  sendMail("subject", "plaintext", "<p>html</p>", user.email);
+};
 
 userSchema.statics.findByCredentials = async (email, password) => {
   // Search for a user by email and password.
-  const user = await User.findOne({ email} )
+  const user = await User.findOne({ email });
   if (!user) {
-    throw new Error({ error: 'Invalid login credentials' })
+    throw new Error({ error: "Invalid login credentials" });
   }
-  const isPasswordMatch = await bcrypt.compare(password, user.password)
+  const isPasswordMatch = await bcrypt.compare(password, user.password);
   if (!isPasswordMatch) {
-    throw new Error({ error: 'Invalid login credentials' })
+    throw new Error({ error: "Invalid login credentials" });
   }
-  return user
-}
+  return user;
+};
 
-const User = mongoose.model('User', userSchema)
-export default User
+userSchema.statics.findByEmail = async (email) => {
+  // Search for a user by email and password.
+  const user = await User.findOne({ email });
+  if (!user) {
+    throw new Error({ error: "Invalid login credentials" });
+  }
+  return user;
+};
+const User = mongoose.model("User", userSchema);
+export default User;

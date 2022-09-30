@@ -17,6 +17,7 @@ import userRouter from './routes/users_route.js';
 app.use(cors());
 
 mongoose.connect('mongodb://127.0.0.1:27017/CivilityOptics', { useNewUrlParser: true });
+
 const connection = mongoose.connection;
 
 connection.once('open', function() {
