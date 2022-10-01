@@ -116,21 +116,3 @@ export const getUserReviews = asyncHandler(async(req, res) => {
       res.status(400).send(error)
   }
 })
-
-
-// doesnt work code 
-export const getUserReviews2 = asyncHandler(async(req, res) => {
-  // View logged in user profile
-  try {
-      const { user_email } = req.body
-      const ratings = await Ratings.findByEmail(user_email)
-      console.log(ratings)
-      if (!rating) {
-          return res.status(401).send({error: 'User lookup failed'})
-      }
-      res.send({ ratings })
-  } catch (error) {
-      res.status(400).send(error)
-  }
-  // res.send(req.user)
-})
