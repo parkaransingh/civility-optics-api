@@ -6,7 +6,7 @@ export const getPlaceDetails = asyncHandler(async (req, res) => {
     res.status(400).send(error)
     return
   }
-  var config = {
+  const config = {
     method: 'get',
     baseURL: 'https://maps.googleapis.com/maps/api/place/details/json',
     headers: { },
@@ -38,7 +38,7 @@ export const getPlaceAutoComplete = asyncHandler(async(req, res) => {
     return
   }
 
-  var config = {
+  const config = {
     method: 'get',
     baseURL: 'https://maps.googleapis.com/maps/api/place/autocomplete/json',
     headers: { },
