@@ -8,7 +8,7 @@ businessRouter.route('/businesss').post(postBusiness)
 
 businessRouter.route('/businesss/login').post(loginBusiness)
 
-businessRouter.route('/businesss/me').get(auth, getBusiness)
+businessRouter.route('/businesss/me').post(getBusiness)
 
 businessRouter.route('/businesss/me/logout').post(auth, logoutBusiness)
 
