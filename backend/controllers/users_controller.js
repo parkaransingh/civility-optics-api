@@ -1,7 +1,7 @@
 import User from '../models/users_model.js'
 import asyncHandler from 'express-async-handler'
 
-export const postUser = asyncHandler(async(req, res) => {
+export const postUser = asyncHandler(async (req, res) => {
   // Create a new user
   try {
     const user = new User(req.body)
@@ -17,13 +17,13 @@ export const postUser = asyncHandler(async(req, res) => {
   }
 })
 
-export const loginUser = asyncHandler(async(req, res) => {
+export const loginUser = asyncHandler(async (req, res) => {
   // Login a registered user
   try {
     const { email, password } = req.body
     const user = await User.findByCredentials(email, password)
     if (!user) {
-      return res.status(401).send({error: 'Login failed! Check authentication credentials'})
+      return res.status(401).send({ error: 'Login failed! Check authentication credentials' })
     }
     const token = await user.generateAuthToken()
     res.send({ user, token })
@@ -32,13 +32,13 @@ export const loginUser = asyncHandler(async(req, res) => {
   }
 })
 
-export const getUser = asyncHandler(async(req, res) => {
+export const getUser = asyncHandler(async (req, res) => {
   // View logged in user profile
   try {
     const { email } = req.body
     const user = await User.findByEmail(email)
     if (!user) {
-      return res.status(401).send({error: 'User lookup failed'})
+      return res.status(401).send({ error: 'User lookup failed' })
     }
     res.send({ user })
   } catch (error) {
@@ -47,7 +47,7 @@ export const getUser = asyncHandler(async(req, res) => {
   // res.send(req.user)
 })
 
-export const logoutUser = asyncHandler(async(req, res) => {
+export const logoutUser = asyncHandler(async (req, res) => {
   // Log user out of the application
   try {
     req.user.tokens = req.user.tokens.filter((token) => {
@@ -60,7 +60,7 @@ export const logoutUser = asyncHandler(async(req, res) => {
   }
 })
 
-export const logoutUserAll = asyncHandler(async(req, res) => {
+export const logoutUserAll = asyncHandler(async (req, res) => {
   // Log user out of all devices
   try {
     req.user.tokens.splice(0, req.user.tokens.length)

@@ -1,7 +1,7 @@
 import Ratings from '../models/ratings_model.js'
 import asyncHandler from 'express-async-handler'
 
-export const postRating = asyncHandler(async(req, res) => {
+export const postRating = asyncHandler(async (req, res) => {
   try {
     const rating = new Ratings(req.body)
     await rating.save()
@@ -29,7 +29,7 @@ export const postRating = asyncHandler(async(req, res) => {
   }
 })
 
-export const getRating = asyncHandler(async(req, res) => {
+export const getRating = asyncHandler(async (req, res) => {
   try {
     const pipeline = [
       {
@@ -52,12 +52,12 @@ export const getRating = asyncHandler(async(req, res) => {
   }
 })
 
-export const getReviews = asyncHandler(async(req, res) => {
+export const getReviews = asyncHandler(async (req, res) => {
   try {
     const pipeline = [
       {
         $match: {
-          place_id: req.body.place_id, 
+          place_id: req.body.place_id,
           review: {
             $exists: true
           }
@@ -86,7 +86,7 @@ export const getReviews = asyncHandler(async(req, res) => {
   }
 })
 
-export const getUserReviews = asyncHandler(async(req, res) => {
+export const getUserReviews = asyncHandler(async (req, res) => {
   try {
     const pipeline = [
       {
