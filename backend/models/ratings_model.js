@@ -33,7 +33,7 @@ const ratingsSchema = new Schema({
 
 ratingsSchema.statics.findByEmail = async (email) => {
     // Search for a rating by email
-    const rating = await Ratings.find({ email });
+    const rating = await Ratings.find({ email: user_email });
 
     if (!rating) {
       throw new Error({ error: "Invalid login credentials" });
