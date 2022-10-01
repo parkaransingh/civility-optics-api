@@ -30,7 +30,7 @@ const ratingsSchema = new Schema({
         required: true
     }
 });
-
+// not needed
 ratingsSchema.statics.findByEmail = async (email) => {
     // Search for a rating by email
     const rating = await Ratings.find({ email: user_email });
