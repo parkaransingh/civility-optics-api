@@ -20,8 +20,27 @@ const ratingsSchema = new Schema({
     review: {
         type: String,
         required: false
+    },
+    user_email: {
+        type: String,
+        required: true
+    },
+    user_name: {
+        type: String,
+        required: true
     }
 });
+// not needed
+ratingsSchema.statics.findByEmail = async (email) => {
+    // Search for a rating by email
+    const rating = await Ratings.find({ email: user_email });
+
+    if (!rating) {
+      throw new Error({ error: "Invalid login credentials" });
+    }
+    console.log(rating);
+    return rating;
+  };
 
 const Ratings = mongoose.model('Ratings', ratingsSchema);
 export default Ratings
