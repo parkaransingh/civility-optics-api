@@ -1,16 +1,15 @@
-import business from '../models/business_model.js'
+import Business from '../models/business_model.js'
 import asyncHandler from 'express-async-handler'
 
 export const postBusiness = asyncHandler(async(req, res) => {
     // Create a new business
     try {
-        const business = new business(req.body)
+        const business = new Business(req.body)
         await business.save()
-        console.log("business created")
         const token = await business.generateAuthToken()
         console.log("Auth Token Generated")
         // business.sendEmailConfirmation()
-        res.status(201).send({ business, token })
+        res.status(202).send({ business, token })
     } catch (error) {
         console.log(error)
         res.status(400).send(error)

@@ -88,5 +88,5 @@ businessSchema.statics.findByCredentials = async (email, password) => {
 }
 
 
-const business = mongoose.model('business', businessSchema)
-export default business
+const Business = mongoose.model('Business', businessSchema)
+export default Business
