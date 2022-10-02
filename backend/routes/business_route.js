@@ -1,17 +1,17 @@
 import express from 'express'
 import auth from '../controllers/auth_controller.js'
-import { postBusiness, getBusiness, loginBusiness, logoutBusiness, logoutBusinessAll } from '../controllers/businesss_controller.js'
+import { postBusiness, getBusiness, loginBusiness, logoutBusiness, logoutBusinessAll } from '../controllers/business_controller.js'
 
 const businessRouter = express.Router()
 
-businessRouter.route('/businesss').post(postBusiness)
+businessRouter.route('/businesses').post(postBusiness)
 
-businessRouter.route('/businesss/login').post(loginBusiness)
+businessRouter.route('/businesses/login').post(loginBusiness)
 
-businessRouter.route('/businesss/me').post(getBusiness)
+businessRouter.route('/businesses/me').post(getBusiness)
 
-businessRouter.route('/businesss/me/logout').post(auth, logoutBusiness)
+businessRouter.route('/businesses/me/logout').post(auth, logoutBusiness)
 
-businessRouter.route('/businesss/me/logoutall').post(auth, logoutBusinessAll)
+businessRouter.route('/businesses/me/logoutall').post(auth, logoutBusinessAll)
 
 export default businessRouter

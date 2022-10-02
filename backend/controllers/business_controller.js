@@ -1,4 +1,4 @@
-import business from '../models/businesss_model.js'
+import business from '../models/business_model.js'
 import asyncHandler from 'express-async-handler'
 
 export const postBusiness = asyncHandler(async(req, res) => {
