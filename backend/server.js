@@ -13,6 +13,7 @@ const PORT = process.env.PORT;
 import ratingRouter from './routes/ratings_route.js';
 import placesRouter from './routes/places_route.js';
 import userRouter from './routes/users_route.js';
+import businessRouter from './routes/business_route.js';
 
 app.use(cors());
 
@@ -28,6 +29,7 @@ app.use(express.json())
 app.use(ratingRouter);
 app.use(placesRouter);
 app.use(userRouter);
+app.use(businessRouter);
 
 app.listen(PORT, function() {
     console.log("Server is running on Port " + PORT);
