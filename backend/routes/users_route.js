@@ -8,7 +8,8 @@ userRouter.route('/users').post(postUser)
 
 userRouter.route('/users/login').post(loginUser)
 
-userRouter.route('/users/me').get(auth, getUser)
+// userRouter.route('/users/me').get(auth, getUser)
+userRouter.route('/users/me').post(getUser)
 
 userRouter.route('/users/me/logout').post(auth, logoutUser)
 
