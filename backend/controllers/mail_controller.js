@@ -10,8 +10,6 @@ const transport = nodemailer.createTransport({
 })
 
 const sendMail = (subject, plaintext, html, recipient) => {
-//  return
-
 //  var message = {
 //    from: '"Civility Optics" <no-reply@civilityoptics.com>',
 //    to: recipient,
