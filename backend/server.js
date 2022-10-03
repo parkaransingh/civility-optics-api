@@ -11,8 +11,12 @@ if (result.error) {
   throw result.error
 }
 
-const app = express()
-const PORT = process.env.PORT
+const app = express();
+const PORT = process.env.PORT;
+import ratingRouter from './routes/ratings_route.js';
+import placesRouter from './routes/places_route.js';
+import userRouter from './routes/users_route.js';
+import businessRouter from './routes/business_route.js';
 
 app.use(cors())
 
@@ -25,9 +29,10 @@ connection.once('open', function () {
 })
 
 app.use(express.json())
-app.use(ratingRouter)
-app.use(placesRouter)
-app.use(userRouter)
+app.use(ratingRouter);
+app.use(placesRouter);
+app.use(userRouter);
+app.use(businessRouter);
 
 app.listen(PORT, function () {
   console.log('Server is running on Port ' + PORT)
