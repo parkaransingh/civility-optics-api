@@ -5,11 +5,11 @@ import { getValue, postRating, getReviews, getReviewsByUser } from '../controlle
 
 const ratingRouter = express.Router()
 
-ratingRouter.route('/postRating').post(postRating)
+ratingRouter.route('/ratings/postRating').post(postRating)
 
-ratingRouter.route('/getValue').post(getValue)
+ratingRouter.route('/ratings/getValue').post(getValue)
 
-ratingRouter.route('/getReviews').post(getReviews)
-ratingRouter.route('/getReviewsByUser').post(getReviewsByUser)
+ratingRouter.route('/ratings/getReviews').post(getReviews)
+ratingRouter.route('/ratings/getReviewsByUser').post(getReviewsByUser)
 
 export default ratingRouter
