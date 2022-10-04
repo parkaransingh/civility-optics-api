@@ -1,15 +1,15 @@
 import express from 'express'
 import auth from '../controllers/auth_controller.js'
 
-import { getRating, postRating, getReviews, getUserReviews } from '../controllers/ratings_controller.js'
+import { getValue, postRating, getReviews, getReviewsByUser } from '../controllers/ratings_controller.js'
 
 const ratingRouter = express.Router()
 
 ratingRouter.route('/postRating').post(postRating)
 
-ratingRouter.route('/getRating').post(getRating)
+ratingRouter.route('/getValue').post(getValue)
 
 ratingRouter.route('/getReviews').post(getReviews)
-ratingRouter.route('/getReviewsUser').post(getUserReviews)
+ratingRouter.route('/getReviewsByUser').post(getReviewsByUser)
 
 export default ratingRouter
