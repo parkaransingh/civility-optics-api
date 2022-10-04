@@ -10,6 +10,7 @@ ratingRouter.route('/ratings/postRating').post(postRating)
 ratingRouter.route('/ratings/getValue').post(getValue)
 
 ratingRouter.route('/ratings/getReviews').post(getReviews)
+
 ratingRouter.route('/ratings/getReviewsByUser').post(getReviewsByUser)
 
 export default ratingRouter
