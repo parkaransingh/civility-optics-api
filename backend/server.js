@@ -5,7 +5,7 @@ import dotenv from 'dotenv'
 import ratingRouter from './routes/ratings_route.js'
 import placesRouter from './routes/places_route.js'
 import userRouter from './routes/users_route.js'
-
+import businessRouter from './routes/business_route.js';
 const result = dotenv.config()
 if (result.error) {
   throw result.error
@@ -13,10 +13,8 @@ if (result.error) {
 
 const app = express();
 const PORT = process.env.PORT;
-import ratingRouter from './routes/ratings_route.js';
-import placesRouter from './routes/places_route.js';
-import userRouter from './routes/users_route.js';
-import businessRouter from './routes/business_route.js';
+
+
 
 app.use(cors())
 

@@ -29,7 +29,7 @@ export const postRating = asyncHandler(async (req, res) => {
   }
 })
 
-export const getRating = asyncHandler(async (req, res) => {
+export const getValue = asyncHandler(async (req, res) => {
   try {
     const pipeline = [
       {
@@ -52,7 +52,7 @@ export const getRating = asyncHandler(async (req, res) => {
   }
 })
 
-export const getReviews = asyncHandler(async (req, res) => {
+export const getRatings = asyncHandler(async (req, res) => {
   try {
     const pipeline = [
       {
@@ -86,7 +86,7 @@ export const getReviews = asyncHandler(async (req, res) => {
   }
 })
 
-export const getUserReviews = asyncHandler(async (req, res) => {
+export const getRatingsByUser = asyncHandler(async (req, res) => {
   try {
     const pipeline = [
       {

@@ -54,7 +54,7 @@ To run the server to the database, use the command `mongod` anywhere in the term
 ## Known Issues
 - Some requests are formatted as POST but should really be GET.
 - In getRatings, ratings from the last 30 days should be returned, but all ratings are being returned.
-- In getReviews, null reviews aren't bring filtered out.
+- In getRatings, null reviews aren't bring filtered out.
 
 # Endpoint Details
 
@@ -71,9 +71,9 @@ The request to get the ratings for a specifited business is `localhost:5000/getR
 
 The syntax of the response body is `{"place_id": "<id>"}` where id is a string signifying the business's ID. Returns a JSON with the `_id` tag being the place_id and the `avg_rating` tag being the average rating for that business.
 
-## /getReviews
+## /getRatings
 
-The request to get the reviews for a specifited business is `localhost:5000/getReviews` (POST)
+The request to get the reviews for a specifited business is `localhost:5000/getRatings` (POST)
 
 The syntax of the response body is `{"place_id": "<id>", "limit":x}` where id is a string signifying the business's ID, and x is a number signifying the max number of reviews you want returned. Returns a JSON with the `review` field being the review and the `date_visited` field being the date the reviewer visited the business, sorted by most recent to least recent.
 
