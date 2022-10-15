@@ -33,6 +33,8 @@ export const loginUser = asyncHandler(async (req, res) => {
 })
 
 export const getUser = asyncHandler(async (req, res) => {
+  // Don't return tokens with user
+  req.user.tokens = undefined
   res.send(req.user)
 })
 
