@@ -3,6 +3,8 @@ import asyncHandler from 'express-async-handler'
 
 export const postRating = asyncHandler(async (req, res) => {
   try {
+    // Remove token from req.body
+    req.body.Authorization = undefined
     const rating = new Ratings(req.body)
     await rating.save()
     console.log('rating.save worked')
