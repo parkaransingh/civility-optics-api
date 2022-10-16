@@ -118,7 +118,8 @@ export const getRatingsByUser = asyncHandler(async (req, res) => {
 })
 
 export const flaggingRating  = asyncHandler(async (req, res) => {
-  const filter = { _id: '634c680b4b36e2850368556d' };
+  console.log(req.body._id )
+  const filter = { _id: req.body._id };
 // update the value of the 'z' field to 42
   const updateDocument = {
     $set: {
@@ -126,4 +127,6 @@ export const flaggingRating  = asyncHandler(async (req, res) => {
     },
 };
 const result = await Ratings.updateOne(filter, updateDocument);
+console.log(result)
+res.status(200).json(result)
 })
