@@ -70,12 +70,14 @@ export const getRatings = asyncHandler(async (req, res) => {
         $limit: req.body.limit
       }, {
         $project: {
+          _id: '$_id',
           review: '$review',
           value: '$value',
           tags: '$tags',
           date_visited: '$date_visited',
           user_email: '$user_email',
-          user_name: '$user_name'
+          user_name: '$user_name', 
+          flagged: '$flagged'
         }
       }
     ]
@@ -113,4 +115,15 @@ export const getRatingsByUser = asyncHandler(async (req, res) => {
   } catch (error) {
     res.status(400).send(error)
   }
+})
+
+export const flaggingRating  = asyncHandler(async (req, res) => {
+  const filter = { _id: '634c680b4b36e2850368556d' };
+// update the value of the 'z' field to 42
+  const updateDocument = {
+    $set: {
+      flagged: true,
+    },
+};
+const result = await Ratings.updateOne(filter, updateDocument);
 })
