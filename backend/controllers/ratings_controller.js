@@ -77,7 +77,8 @@ export const getRatings = asyncHandler(async (req, res) => {
           date_visited: '$date_visited',
           user_email: '$user_email',
           user_name: '$user_name', 
-          flagged: '$flagged'
+          flagged: '$flagged', 
+          helpful: '$helpful'
         }
       }
     ]

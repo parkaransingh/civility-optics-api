@@ -32,6 +32,10 @@ const ratingsSchema = new Schema({
   flagged: {
     type: Boolean, 
     required: true
+  }, 
+  helpful: {
+    type: Number, 
+    required: true
   }
 })
 // not needed
