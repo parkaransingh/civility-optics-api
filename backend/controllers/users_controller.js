@@ -24,6 +24,8 @@ export const loginUser = asyncHandler(async (req, res) => {
     const user = await User.findByCredentials(email, password)
     if (!user) {
       return res.status(401).send({ error: 'Login failed! Check authentication credentials' })
+    } else if (user.isBanned) {
+      return res.status(402).send({ error: 'Login failed! User is banned' })
     }
     const token = await user.generateAuthToken()
     res.send({ user, token })
