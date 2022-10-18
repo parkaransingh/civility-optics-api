@@ -127,6 +127,29 @@ export const flaggingRating  = asyncHandler(async (req, res) => {
       flagged: true,
     },
 };
+
+const result = await Ratings.updateOne(filter, updateDocument);
+console.log(result)
+res.status(200).json(result)
+})
+
+export const helpful = asyncHandler(async (req, res) => {
+  const increment = req.body.increment
+  const filter = { _id: req.body._id };
+// update the value of the 'z' field to 42
+  let number = -1;
+  if (increment === true) {
+    number = 1
+  }
+
+  const updateDocument = {
+      $inc: {
+      helpful: number,
+      },
+    };
+
+
+
 const result = await Ratings.updateOne(filter, updateDocument);
 console.log(result)
 res.status(200).json(result)
