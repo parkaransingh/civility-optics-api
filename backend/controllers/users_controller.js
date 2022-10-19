@@ -33,18 +33,9 @@ export const loginUser = asyncHandler(async (req, res) => {
 })
 
 export const getUser = asyncHandler(async (req, res) => {
-  // View logged in user profile
-  try {
-    const { email } = req.body
-    const user = await User.findByEmail(email)
-    if (!user) {
-      return res.status(401).send({ error: 'User lookup failed' })
-    }
-    res.send({ user })
-  } catch (error) {
-    res.status(400).send(error)
-  }
-  // res.send(req.user)
+  // Don't return tokens with user
+  req.user.tokens = undefined
+  res.send(req.user)
 })
 
 export const logoutUser = asyncHandler(async (req, res) => {
