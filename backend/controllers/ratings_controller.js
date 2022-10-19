@@ -102,12 +102,15 @@ export const getRatingsByUser = asyncHandler(async (req, res) => {
       },
       {
         $project: {
+          _id: '$_id',
           review: '$review',
           value: '$value',
           tags: '$tags',
           date_visited: '$date_visited',
           user_email: '$user_email',
-          user_name: '$user_name'
+          user_name: '$user_name', 
+          flagged: '$flagged', 
+          helpful: '$helpful'
         }
       }
     ]
