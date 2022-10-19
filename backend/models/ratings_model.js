@@ -36,6 +36,10 @@ const ratingsSchema = new Schema({
   helpful: {
     type: Number, 
     required: true
+  }, 
+  helpfulUsers: {
+    type: Array,
+    required: true
   }
 })
 // not needed
