@@ -27,6 +27,7 @@ const businessSchema = mongoose.Schema({
     required: true,
     minLength: 7
   },
+  //business key represents the Google Places API key when the business is searched for on the map
   business_key: {
     type: String,
     required: true,
@@ -76,7 +77,7 @@ businessSchema.methods.sendEmailConfirmation = async function() {
 
 businessSchema.statics.findByCredentials = async (email, password) => {
   // Search for a business by email and password.
-  const business = await business.findOne({ email} )
+  const business = await Business.findOne({ email} )
   if (!business) {
     throw new Error({ error: 'Invalid login credentials' })
   }
