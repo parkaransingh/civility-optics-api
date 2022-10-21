@@ -21,9 +21,15 @@ const userSchema = mongoose.Schema({
     type: Boolean,
     default: false
   },
+<<<<<<< HEAD
+  isBanned: {
+    type: Boolean,
+    default: false
+=======
   verificationCode: {
     type: String,
     required: false
+>>>>>>> develop
   },
   password: {
     type: String,
@@ -69,6 +75,9 @@ userSchema.pre('save', async function (next) {
 userSchema.methods.generateAuthToken = async function () {
   // Generate an auth token for the user
   const user = this
+  if (user.isBanned) {
+    throw new Error({ error: 'Invalid login: user is banned' })
+  }
   const token = jwt.sign({ _id: user._id }, process.env.JWT_KEY)
   user.tokens = user.tokens.concat({ token })
   await user.save()
