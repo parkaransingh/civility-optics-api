@@ -21,15 +21,13 @@ const userSchema = mongoose.Schema({
     type: Boolean,
     default: false
   },
-<<<<<<< HEAD
   isBanned: {
     type: Boolean,
     default: false
-=======
+  },
   verificationCode: {
     type: String,
     required: false
->>>>>>> develop
   },
   password: {
     type: String,
