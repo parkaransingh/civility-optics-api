@@ -1,5 +1,6 @@
 import Business from '../models/business_model.js'
 import asyncHandler from 'express-async-handler'
+import { callbackPromise } from 'nodemailer/lib/shared/index.js'
 
 export const postBusiness = asyncHandler(async(req, res) => {
     // Create a new business
@@ -8,6 +9,32 @@ export const postBusiness = asyncHandler(async(req, res) => {
         await business.save()
         const token = await business.generateAuthToken()
         console.log("Auth Token Generated")
+        // business.sendEmailConfirmation()
+        res.status(202).send({ business, token })
+    } catch (error) {
+        console.log(error)
+        res.status(400).send(error)
+    }
+})
+
+export const patchBusiness = asyncHandler(async(req, res) => {
+    // Updates a new business
+    try {
+        const business = req.business
+        //const update = {$set: req.body}
+        //const options = {}
+        
+        await business.save()
+        const token = await business.generateAuthToken()
+        console.log("Auth Token Generated")
+        Business.findOne({_id:req.body.id}, (err, doc)=>{
+            doc.email = req.body.email
+            doc.password = req.body.password
+            doc.business_name = req.body.business_name
+            doc.business_key = req.body.business_key
+            doc.business_addr = req.body.business_addr
+            doc.save(callbackPromise)
+        })
         // business.sendEmailConfirmation()
         res.status(202).send({ business, token })
     } catch (error) {
