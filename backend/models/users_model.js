@@ -2,7 +2,6 @@ import mongoose from 'mongoose'
 import validator from 'validator'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
-import sendMail from '../controllers/mail_controller.js'
 
 const Schema = mongoose.Schema
 
@@ -22,9 +21,15 @@ const userSchema = mongoose.Schema({
     type: Boolean,
     default: false
   },
+<<<<<<< HEAD
   isBanned: {
     type: Boolean,
     default: false
+=======
+  verificationCode: {
+    type: String,
+    required: false
+>>>>>>> develop
   },
   password: {
     type: String,
@@ -77,12 +82,6 @@ userSchema.methods.generateAuthToken = async function () {
   user.tokens = user.tokens.concat({ token })
   await user.save()
   return token
-}
-
-userSchema.methods.sendEmailConfirmation = async function () {
-  // Generate an auth token for the user
-  const user = this
-  sendMail('subject', 'plaintext', '<p>html</p>', user.email)
 }
 
 userSchema.statics.findByCredentials = async (email, password) => {

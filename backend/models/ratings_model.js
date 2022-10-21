@@ -28,6 +28,18 @@ const ratingsSchema = new Schema({
   user_name: {
     type: String,
     required: true
+  }, 
+  flagged: {
+    type: Boolean, 
+    required: true
+  }, 
+  helpful: {
+    type: Number, 
+    required: true
+  }, 
+  helpfulUsers: {
+    type: Array,
+    required: true
   }
 })
 // not needed

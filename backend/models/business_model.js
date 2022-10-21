@@ -2,9 +2,8 @@ import mongoose from 'mongoose'
 import validator from 'validator'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
-import sendMail from '../controllers/mail_controller.js'
 
-const Schema = mongoose.Schema;
+const Schema = mongoose.Schema
 
 const businessSchema = mongoose.Schema({
   email: {
@@ -68,15 +67,9 @@ businessSchema.methods.generateAuthToken = async function() {
   return token
 }
 
-businessSchema.methods.sendEmailConfirmation = async function() {
-  // Generate an auth token for the business
-  const business = this
-  sendMail("subject", "plaintext", "<p>html</p>", business.email)
-}
-
 businessSchema.statics.findByCredentials = async (email, password) => {
   // Search for a business by email and password.
-  const business = await business.findOne({ email} )
+  const business = await business.findOne({ email })
   if (!business) {
     throw new Error({ error: 'Invalid login credentials' })
   }
