@@ -1,7 +1,7 @@
-import express from "express";
+import express from 'express'
 import { getPlaceDetails, getPlaceAutoComplete } from '../controllers/places_controller.js'
 
-const placesRouter = express.Router();
+const placesRouter = express.Router()
 
 placesRouter.route('/getPlaceDetails').post(getPlaceDetails)
 
