@@ -20,7 +20,7 @@ export const postBusiness = asyncHandler(async(req, res) => {
 export const patchBusiness = asyncHandler(async(req, res) => {
     // Updates a new business
     try {
-        const business = req.business
+        const business = getBusiness.req.body.Business
         //const update = {$set: req.body}
         //const options = {}
         
@@ -60,7 +60,17 @@ export const loginBusiness = asyncHandler(async(req, res) => {
 
 export const getBusiness = asyncHandler(async(req, res) => {
     // View logged in business profile
-    res.send(req.business)
+    //res.send(req.business)
+    try {
+        const { email } = req.body
+        const business = await Business.findByEmail(email)
+        if (!business) {
+            return res.status(401).send({error: 'Business lookup failed'})
+        }
+        res.send({ business })
+    } catch (error) {
+        res.status(400).send(error)
+    }
 })
 
 export const logoutBusiness = asyncHandler(async(req, res) => {

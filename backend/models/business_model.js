@@ -88,6 +88,14 @@ businessSchema.statics.findByCredentials = async (email, password) => {
   return business
 }
 
+businessSchema.statics.findByEmail = async (email) => {
+  // Search for a user by email and password.
+  const business = await Business.findOne({ email });
+  if (!business) {
+    throw new Error({ error: "Invalid login credentials" });
+  }
+  return business;
+}
 
 const Business = mongoose.model('Business', businessSchema)
 export default Business
