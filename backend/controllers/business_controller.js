@@ -21,24 +21,16 @@ export const postBusiness = asyncHandler(async(req, res) => {
 export const patchBusiness = asyncHandler(async(req, res) => {
     // Updates a new business
     try {
-        const business = getBusiness
-        //const update = {$set: req.body}
-        //const options = {}
-        
-        //await business.save()
-        const token = req.body.token//await business.generateAuthToken()
-        console.log("Auth Token Received")
-        Business.findOne({_id:req.body.id}, (err, doc)=>{
-            doc.email = req.body.email
-            doc.password = req.body.password
-            doc.business_name = req.body.business_name
-            doc.business_key = req.body.business_key
-            doc.business_addr = req.body.business_addr
-            doc.save()
-            console.log("New Document Information Saved")
-        })
-        // business.sendEmailConfirmation()
-        res.status(202).send({ business, token })
+    req.business.email = req.body.email
+    req.business.password = req.body.password
+    req.business.business_name = req.body.business_name
+    req.business.business_key = req.body.business_key
+    req.business.business_addr = req.body.business_addr
+    req.business.save()
+    console.log('New Document Information Saved')
+    // business.sendEmailConfirmation()
+    const business = req.business
+    res.status(202).send({ business })
     } catch (error) {
         console.log(error)
         res.status(400).send(error)

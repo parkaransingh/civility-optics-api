@@ -8,7 +8,7 @@ businessRouter.route('/businesses').post(postBusiness)
 
 businessRouter.route('/businesses/update').post(authBusiness, patchBusiness)
 
-businessRouter.route('/businesses/login').post(authBusiness,loginBusiness)
+businessRouter.route('/businesses/login').post(loginBusiness)
 
 businessRouter.route('/businesses/me').post(getBusiness)
 
