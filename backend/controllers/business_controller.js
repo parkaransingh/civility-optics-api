@@ -20,7 +20,7 @@ export const postBusiness = asyncHandler(async(req, res) => {
 export const patchBusiness = asyncHandler(async(req, res) => {
     // Updates a new business
     try {
-        const business = getBusiness.req.body.Business
+        const business = getBusiness
         //const update = {$set: req.body}
         //const options = {}
         

@@ -6,7 +6,7 @@ const businessRouter = express.Router()
 
 businessRouter.route('/businesses').post(postBusiness)
 
-businessRouter.route('/businesses/update').patch(patchBusiness)
+businessRouter.route('/businesses/update').post(patchBusiness)
 
 businessRouter.route('/businesses/login').post(authBusiness,loginBusiness)
 
