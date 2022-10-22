@@ -2,6 +2,7 @@ import Business from '../models/business_model.js'
 import asyncHandler from 'express-async-handler'
 import { callbackPromise } from 'nodemailer/lib/shared/index.js'
 
+
 export const postBusiness = asyncHandler(async(req, res) => {
     // Create a new business
     try {
@@ -24,21 +25,36 @@ export const patchBusiness = asyncHandler(async(req, res) => {
         //const update = {$set: req.body}
         //const options = {}
         
-        await business.save()
-        const token = await business.generateAuthToken()
-        console.log("Auth Token Generated")
+        //await business.save()
+        const token = req.body.token//await business.generateAuthToken()
+        console.log("Auth Token Received")
         Business.findOne({_id:req.body.id}, (err, doc)=>{
             doc.email = req.body.email
             doc.password = req.body.password
             doc.business_name = req.body.business_name
             doc.business_key = req.body.business_key
             doc.business_addr = req.body.business_addr
-            doc.save(callbackPromise)
+            doc.save()
+            console.log("New Document Information Saved")
         })
         // business.sendEmailConfirmation()
         res.status(202).send({ business, token })
     } catch (error) {
         console.log(error)
+        res.status(400).send(error)
+    }
+})
+export const getBusiness = asyncHandler(async(req, res) => {
+    // View logged in business profile
+    //res.send(req.business)
+    try {
+        const { email } = req.body
+        const business = await Business.findByEmail(email)
+        if (!business) {
+            return res.status(401).send({error: 'Business lookup failed'})
+        }
+        res.send({ business })
+    } catch (error) {
         res.status(400).send(error)
     }
 })
@@ -53,21 +69,6 @@ export const loginBusiness = asyncHandler(async(req, res) => {
         }
         const token = await business.generateAuthToken()
         res.send({ business, token })
-    } catch (error) {
-        res.status(400).send(error)
-    }
-})
-
-export const getBusiness = asyncHandler(async(req, res) => {
-    // View logged in business profile
-    //res.send(req.business)
-    try {
-        const { email } = req.body
-        const business = await Business.findByEmail(email)
-        if (!business) {
-            return res.status(401).send({error: 'Business lookup failed'})
-        }
-        res.send({ business })
     } catch (error) {
         res.status(400).send(error)
     }
