@@ -22,7 +22,6 @@ export const patchBusiness = asyncHandler(async(req, res) => {
     // Updates a new business
     try {
     req.business.email = req.body.email
-    req.business.password = req.body.password
     req.business.business_name = req.body.business_name
     req.business.business_key = req.body.business_key
     req.business.business_addr = req.body.business_addr
@@ -71,7 +70,7 @@ export const loginBusiness = asyncHandler(async(req, res) => {
     //Login a registered business
     try {
         const { email, password } = req.body
-        const business = await business.findByCredentials(email, password)
+        const business = await Business.findByCredentials(email, password)
         if (!business) {
             return res.status(401).send({error: 'Login failed! Check authentication credentials'})
         }

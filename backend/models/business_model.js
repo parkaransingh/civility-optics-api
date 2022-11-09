@@ -45,7 +45,7 @@ const businessSchema = mongoose.Schema({
   business_description: {
     type: String,
     default: "",
-    required: true,
+    required: false,
     minLength: 0
   },
   tokens: [{
