@@ -42,6 +42,12 @@ const businessSchema = mongoose.Schema({
     required: true,
     minLength: 0
   },
+  business_description: {
+    type: String,
+    default: "",
+    required: true,
+    minLength: 0
+  },
   tokens: [{
     token: {
       type: String,
@@ -64,6 +70,7 @@ businessSchema.methods.generateAuthToken = async function() {
   const business = this
   const token = jwt.sign({_id: business._id}, process.env.JWT_KEY)
   business.tokens = business.tokens.concat({token})
+  console.log("Auth token made for business")
   await business.save()
   return token
 }
@@ -86,6 +93,15 @@ businessSchema.statics.findByEmail = async (email) => {
   const business = await Business.findOne({ email });
   if (!business) {
     throw new Error({ error: "Invalid login credentials" });
+  }
+  return business;
+}
+
+businessSchema.statics.findByBusinessKey = async (business_key) => {
+  // Search for a user by email and password.
+  const business = await Business.findOne({ business_key });
+  if (!business) {
+    throw new Error({ error: "Invalid business credentials" });
   }
   return business;
 }
