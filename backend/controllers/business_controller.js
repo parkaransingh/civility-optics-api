@@ -55,12 +55,12 @@ export const getBusinessByKey = asyncHandler(async(req, res) => {
     // View logged in business profile
     //res.send(req.business)
     try {
-        const { email } = req.body
+        const { business_key } = req.body
         const business = await Business.findByBusinessKey(business_key)
         if (!business) {
             return res.status(401).send({error: 'Business lookup failed'})
         }
-        res.send({ business })
+        res.send({ business_description })
     } catch (error) {
         res.status(400).send(error)
     }
