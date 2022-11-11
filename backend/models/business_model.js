@@ -29,17 +29,17 @@ const businessSchema = mongoose.Schema({
   //business key represents the Google Places API key when the business is searched for on the map
   business_key: {
     type: String,
-    required: true,
+    required: false,
     minLength: 0
   },
   business_name: {
     type: String,
-    required: true,
+    required: false,
     minLength: 0
   },
   business_address: {
     type: String,
-    required: true,
+    required: false,
     minLength: 0
   },
   business_description: {
