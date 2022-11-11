@@ -57,19 +57,21 @@ export const sendCode = asyncHandler(async (req, res) => {
 })
 
 export const verifyCode = asyncHandler(async (req, res) => {
+  const verifyCode = req.body.verifycode
   try {
+    let pass = false
     if (!req.user.isVerified) {
-      const verifyCode = req.body.verifycode
+      // const verifyCode = req.body.verifycode
       if (req.user.verificationCode !== undefined && verifyCode === req.user.verificationCode) {
         req.user.isVerified = true
         req.user.verificationCode = undefined
+        pass = true
         await req.user.save()
       } else {
         res.status(403).send({ error: 'Verification code does not match' })
       }
     }
-
-    res.send()
+    res.send({ pass })
   } catch (error) {
     res.status(400).send(error)
   }
