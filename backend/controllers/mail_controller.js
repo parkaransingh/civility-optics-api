@@ -77,9 +77,11 @@ export const sendPasswordCode = asyncHandler(async (req, res) => {
 export const verifyEmail = asyncHandler(async (req, res) => {
   try {
     if (!req.user.isVerified) {
+      let pass = false
       req.user.isVerified = true
+      pass = true
       await req.user.save()
-      res.send()
+      res.send({ pass })
     } else {
       res.status(403).send({ error: 'User already verified' })
     }
