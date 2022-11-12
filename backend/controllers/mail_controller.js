@@ -94,7 +94,8 @@ export const changePassword = asyncHandler(async (req, res) => {
   try {
     req.user.password = req.body.newPassword
     await req.user.save()
-    res.send()
+    const pass = true
+    res.send({ pass })
   } catch (error) {
     res.status(400).send(error)
   }
