@@ -63,7 +63,7 @@ export const getBusinessByKey = asyncHandler(async(req, res) => {
             return res.status(401).send({error: 'Business lookup failed'})
         }
         console.log(business.business_description)
-        res.status(200).json(business.business_description)
+        res.status(200).json({ business })
     } catch (error) {
         res.status(400).send(error)
     }
