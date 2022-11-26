@@ -11,15 +11,14 @@ if (result.error) {
   throw result.error
 }
 
-const app = express();
-const PORT = process.env.PORT;
-
-
+const app = express()
+const PORT = process.env.PORT
+const MONGO_KEY = process.env.MONGO_KEY
 
 app.use(cors())
 
 // mongoose.connect('mongodb://127.0.0.1:27017/CivilityOptics', { useNewUrlParser: true });
-mongoose.connect('mongodb+srv://CivilityOptics:Dontpush2134@civility1.7zzflo5.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true })
+mongoose.connect(MONGO_KEY, { useNewUrlParser: true })
 const connection = mongoose.connection
 
 connection.once('open', function () {
