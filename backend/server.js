@@ -6,6 +6,7 @@ import ratingRouter from './routes/ratings_route.js'
 import placesRouter from './routes/places_route.js'
 import userRouter from './routes/users_route.js'
 import businessRouter from './routes/business_route.js';
+import activismRouter from './routes/activism_route.js'
 const result = dotenv.config()
 if (result.error) {
   throw result.error
@@ -31,6 +32,7 @@ app.use(ratingRouter);
 app.use(placesRouter);
 app.use(userRouter);
 app.use(businessRouter);
+app.use(activismRouter);
 
 app.listen(PORT, function () {
   console.log('Server is running on Port ' + PORT)
