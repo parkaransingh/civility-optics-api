@@ -9,6 +9,10 @@ const activismSchema = new Schema({
     required: true,
     unique: true,
   },
+  displayTitle: {
+    type: String,
+    required: true,
+  },
   description: {
     type: String,
     required: true,
