@@ -1,15 +1,19 @@
-import express from "express";
+import express from 'express'
 import auth from '../controllers/auth_controller.js'
 
-import { getRating, postRating, getReviews, getUserReviews } from '../controllers/ratings_controller.js'
+import { getValue, postRating, getRatings, getRatingsByUser, flaggingRating, helpful } from '../controllers/ratings_controller.js'
 
-const ratingRouter = express.Router();
+const ratingRouter = express.Router()
 
-ratingRouter.route('/postRating').post(postRating)
+ratingRouter.route('/ratings/postRating').post(auth, postRating)
 
-ratingRouter.route('/getRating').post(getRating)
+ratingRouter.route('/ratings/getValue').post(getValue)
 
-ratingRouter.route('/getReviews').post(getReviews)
-ratingRouter.route('/getReviewsUser').post(getUserReviews)
+ratingRouter.route('/ratings/getRatings').post(getRatings)
+
+ratingRouter.route('/ratings/getRatingsByUser').post(getRatingsByUser)
+
+ratingRouter.route('/ratings/flag').post(flaggingRating)
+ratingRouter.route('/ratings/helpful').post(helpful)
 
 export default ratingRouter
