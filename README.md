@@ -6,7 +6,7 @@ The API connector to communicate the app with the database.
 ## Pre-requisites
 Make sure you have Node.js version 14.16 and NPM version 6.14 installed: https://nodejs.org/en/download/. You can follow the tutorial provided here: https://phoenixnap.com/kb/install-node-js-npm-on-windows.
 
-To access the project on your local computer, clone the repository on GitHub by running `git clone https://github.com/vibestudios/civility-optics-android.git`.
+To access the project on your local computer, clone the repository on GitHub by running `git clone https://github.com/parkaransingh/civility-optics-api.git`.
 
 <br>
 
